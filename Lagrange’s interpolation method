@@ -1,0 +1,16 @@
+# Lagrange’s interpolation method
+# Given data points
+X = [0.0, 0.5, 1.0]
+Y = [1.0, 1.758, 2.965]
+
+xp = 0.75   # point where we want f(x)
+
+# Lagrange basis terms (L0, L1, L2)
+L0 = ((xp - X[1]) * (xp - X[2])) / ((X[0] - X[1]) * (X[0] - X[2]))
+L1 = ((xp - X[0]) * (xp - X[2])) / ((X[1] - X[0]) * (X[1] - X[2]))
+L2 = ((xp - X[0]) * (xp - X[1])) / ((X[2] - X[0]) * (X[2] - X[1]))
+
+# Interpolated value
+result = Y[0] * L0 + Y[1] * L1 + Y[2] * L2
+
+print("Interpolated value at x = 0.75 is:", round(result, 6))
