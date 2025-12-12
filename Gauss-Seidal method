@@ -1,0 +1,33 @@
+# Gauss-Seidal method
+# Initial guesses
+x = 0.0
+y = 0.0
+z = 0.0
+
+tolerance = 1e-3       # stopping condition
+max_iterations = 50    # limit to avoid infinite loops
+
+# Print table header
+print(f"{'Iter':<5} {'x':>10} {'y':>10} {'z':>10}")
+
+for i in range(1, max_iterations + 1):
+
+    # Compute updated values for x, y, z
+    nx = (4 - y - z) / 2       # new x uses old y, old z
+    ny = (4 - nx - z) / 2      # new y uses new x, old z
+    nz = (4 - nx - ny) / 2     # new z uses new x, new y
+
+    # Display the current iteration results (6 decimal places)
+    print(f"{i:<5} {nx:>10.6f} {ny:>10.6f} {nz:>10.6f}")
+
+    # Check for convergence: if all variable changes are below tolerance → stop
+    if (
+        abs(nx - x) < tolerance and
+        abs(ny - y) < tolerance and
+        abs(nz - z) < tolerance
+    ):
+        break
+
+    # Update x, y, z for the next iteration
+    x,y,z = nx,ny,nz
+
