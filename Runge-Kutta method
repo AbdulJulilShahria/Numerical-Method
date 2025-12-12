@@ -1,0 +1,28 @@
+#Runge-Kutta method
+# dy/dx = y - x
+def f(x, y):
+    return y - x
+
+
+# Initial condition y(0) = 2
+x = 0.0
+y = 2.0
+
+h = 0.1  # step size
+
+print("Step\t x\t\t k1\t\t\t k2\t\t\t k3\t\t\t k4\t\t\t y_next")
+
+for i in range(2):  # until x = 0.2 (2 steps of size 0.1)
+    k1 = h * f(x, y)
+    k2 = h * f(x + h / 2, y + k1 / 2)
+    k3 = h * f(x + h / 2, y + k2 / 2)
+    k4 = h * f(x + h, y + k3)
+
+    y_new = y + (k1 + 2 * k2 + 2 * k3 + k4) / 6
+
+    print(f"{i+1}\t {x:.6f}\t {k1:.6f}\t {k2:.6f}\t {k3:.6f}\t {k4:.6f}\t {y_new:.6f}")
+
+    y = y_new
+    x += h
+
+print(f"\nFinal value: y(0.2) = {y:.6f}")
